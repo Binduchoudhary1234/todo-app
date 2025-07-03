@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors"
-import connectDB from './db/db.js';
+import ConnectDB from './db/db.js';
 import userRoutes from "./routes/user.routes.js";
 import brandRoutes from "./routes/brand.routes.js";
 import qtyheadRoutes from "./routes/qtyhead.routes.js";
@@ -11,7 +11,7 @@ import todoRoutes from "./routes/todo.routes.js";
 import forgetPasswordRoutes from "./routes/forgetpassword.routes.js";
 
 dotenv.config();
-connectDB(); 
+ConnectDB(); 
 
 const app = express();
 app.use(cors());
