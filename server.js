@@ -1,7 +1,7 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors"
+import connectDB from './db/db.js';
 import userRoutes from "./routes/user.routes.js";
 import brandRoutes from "./routes/brand.routes.js";
 import qtyheadRoutes from "./routes/qtyhead.routes.js";
@@ -11,6 +11,7 @@ import todoRoutes from "./routes/todo.routes.js";
 import forgetPasswordRoutes from "./routes/forgetpassword.routes.js";
 
 dotenv.config();
+connectDB(); 
 
 const app = express();
 app.use(cors());
@@ -25,16 +26,10 @@ app.use("/api/forgetpassword", forgetPasswordRoutes);
 
 
 app.get("/", (req, res) => {
-  res.send("✅  API is working fine!");
+  res.send("API is working fine!");
 });
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("✅ MongoDB connected"))
-  .catch(err => console.error("❌ DB connection error:", err.message));
-
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://localhost:${PORT}`);
 });
